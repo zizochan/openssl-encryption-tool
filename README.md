@@ -78,3 +78,29 @@ alias decrypt='/path/to/openssl-encryption-tool/decrypt.sh'
 ```bash
 shfmt -w .
 ```
+
+---
+
+## 🧰 付属ツール（tools/）
+
+### 🔒 tools/bulk_encrypt.sh
+
+指定したディレクトリ以下の特定のファイルを再帰的に探索し、すべて暗号化します。
+暗号化に成功したファイルは、自動で削除されます。
+
+```bash
+./tools/bulk_encrypt.sh ./your_directory
+```
+
+* 対象ファイルの拡張子を追加する場合は、スクリプト内の`EXTENSIONS`変数を編集して下さい。
+
+---
+
+### 🔓 tools/bulk_decrypt.sh
+
+指定したディレクトリ以下の `.enc` ファイルをすべて復号します。
+復号に成功したファイルは、自動で削除されます。
+
+```bash
+./tools/bulk_decrypt.sh ./your_directory
+```

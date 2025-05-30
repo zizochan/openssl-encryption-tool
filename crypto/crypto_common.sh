@@ -16,3 +16,14 @@ load_passphrase() {
 		exit 1
 	fi
 }
+
+# 共通：ユーザー確認
+confirm_or_exit() {
+	local message="$1"
+	echo "🟡 $message (yes/no)"
+	read -r confirm
+	if [[ "$confirm" != "yes" ]]; then
+		echo "❎ 中止しました"
+		exit 0
+	fi
+}
