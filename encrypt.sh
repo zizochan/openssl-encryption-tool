@@ -22,6 +22,6 @@ if [[ -f "$OUTPUT_FILE" ]]; then
 	exit 1
 fi
 
-openssl enc -aes-256-cbc -pbkdf2 -salt -in "$INPUT_FILE" -out "$OUTPUT_FILE" -pass pass:"$PASSPHRASE"
+openssl enc $OPENSSL_ENCRYPT_OPTIONS -in "$INPUT_FILE" -out "$OUTPUT_FILE" -pass pass:"$PASSPHRASE"
 
 echo "✅ 暗号化完了: $OUTPUT_FILE"

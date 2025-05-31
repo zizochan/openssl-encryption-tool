@@ -104,3 +104,16 @@ shfmt -w .
 ```bash
 ./tools/bulk_decrypt.sh ./your_directory
 ```
+
+---
+
+### tools/encrypt_folder.sh
+
+指定したディレクトリを `.zip` に圧縮し、任意のパスフレーズで `.zip.enc` として暗号化するツールです。
+このツールでは `passphrase.txt` は使用せず、実行時にパスフレーズを入力します。
+
+パスワードディレクトリごとクラウド等にバックアップする時に使って下さい。
+
+```bash
+./tools/encrypt_folder.sh ~/Downloads/my_folder
+```

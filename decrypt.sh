@@ -23,6 +23,6 @@ if [[ -f "$OUTPUT_FILE" ]]; then
 	exit 1
 fi
 
-openssl enc -d -aes-256-cbc -pbkdf2 -in "$INPUT_FILE" -out "$OUTPUT_FILE" -pass pass:"$PASSPHRASE"
+openssl enc $OPENSSL_DECRYPT_OPTIONS -in "$INPUT_FILE" -out "$OUTPUT_FILE" -pass pass:"$PASSPHRASE"
 
 echo "✅ 復号完了: $OUTPUT_FILE"

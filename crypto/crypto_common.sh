@@ -1,5 +1,9 @@
 #!/bin/bash
 
+# 共通 OpenSSL オプション
+OPENSSL_ENCRYPT_OPTIONS="-aes-256-cbc -pbkdf2 -salt"
+OPENSSL_DECRYPT_OPTIONS="-d -aes-256-cbc -pbkdf2"
+
 # 共通：パスフレーズ読み込み（存在＆中身チェックあり）
 load_passphrase() {
 	local passphrase_file="passphrase.txt"
