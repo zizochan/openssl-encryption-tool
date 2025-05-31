@@ -19,7 +19,7 @@ DECRYPT_SCRIPT="$SCRIPT_DIR/decrypt.sh"
 
 find "$TARGET_DIR" -type f -name "*.enc" | while read -r file; do
 	echo "🔓 復号中: $file"
-	if "$DECRYPT_SCRIPT" "$file"; then
+	if SKIP_FINDER_OPEN=1 "$DECRYPT_SCRIPT" "$file"; then
 		echo "✅ 復号成功、元ファイル削除: $file"
 		rm "$file"
 	else

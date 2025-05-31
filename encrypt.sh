@@ -14,6 +14,11 @@ if [[ -z "$INPUT_FILE" ]]; then
 	exit 1
 fi
 
+if [[ "$INPUT_FILE" == *.enc ]]; then
+	echo "🔴 .enc ファイルは対象にできません: $INPUT_FILE" >&2
+	exit 1
+fi
+
 if [[ ! -f "$INPUT_FILE" ]]; then
 	echo "🔴 入力ファイルが見つかりません: $INPUT_FILE" >&2
 	exit 1

@@ -29,3 +29,9 @@ check_passphrase_not_empty
 openssl enc $OPENSSL_DECRYPT_OPTIONS -in "$INPUT_FILE" -out "$OUTPUT_FILE" -pass pass:"$PASSPHRASE"
 
 echo "✅ 復号完了: $OUTPUT_FILE"
+
+# ✅ Finderで復号先ディレクトリを開く
+if [[ -z "$SKIP_FINDER_OPEN" ]]; then
+	OUTPUT_DIR="$(dirname "$OUTPUT_FILE")"
+	open "$OUTPUT_DIR"
+fi
