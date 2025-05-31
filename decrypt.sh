@@ -1,7 +1,9 @@
 #!/bin/bash
 set -e
 
-. ./crypto/crypto_common.sh
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+source "$SCRIPT_DIR/crypto/crypto_common.sh"
+
 load_passphrase
 
 INPUT_FILE="$1"
@@ -23,6 +25,7 @@ if [[ -f "$OUTPUT_FILE" ]]; then
 	exit 1
 fi
 
+check_passphrase_not_empty
 openssl enc $OPENSSL_DECRYPT_OPTIONS -in "$INPUT_FILE" -out "$OUTPUT_FILE" -pass pass:"$PASSPHRASE"
 
 echo "✅ 復号完了: $OUTPUT_FILE"

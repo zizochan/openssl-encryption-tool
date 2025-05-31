@@ -33,7 +33,7 @@ chmod 600 passphrase.txt
 頻繁に使用する場合は、以下のエイリアスを追加しておくと便利です。
 
 ```
-alias encrypt='/path/to/openssl-encryption-tool/encrypt.rb'
+alias encrypt='/path/to/openssl-encryption-tool/encrypt.sh'
 alias decrypt='/path/to/openssl-encryption-tool/decrypt.sh'
 ```
 

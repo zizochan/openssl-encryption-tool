@@ -6,7 +6,9 @@ OPENSSL_DECRYPT_OPTIONS="-d -aes-256-cbc -pbkdf2"
 
 # 共通：パスフレーズ読み込み（存在＆中身チェックあり）
 load_passphrase() {
-	local passphrase_file="passphrase.txt"
+	local script_dir="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+	local passphrase_file="$script_dir/../passphrase.txt"
+
 	if [[ ! -f "$passphrase_file" ]]; then
 		echo "🔴 $passphrase_file が見つかりません" >&2
 		exit 1
@@ -29,5 +31,13 @@ confirm_or_exit() {
 	if [[ "$confirm" != "yes" ]]; then
 		echo "❎ 中止しました"
 		exit 0
+	fi
+}
+
+# パスフレーズが空でないかチェック
+check_passphrase_not_empty() {
+	if [[ -z "$PASSPHRASE" ]]; then
+		echo "❌ パスフレーズが空です。中止します。" >&2
+		exit 1
 	fi
 }

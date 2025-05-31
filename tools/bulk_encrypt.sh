@@ -2,7 +2,7 @@
 set -e
 
 # 🔽 対象拡張子
-EXTENSIONS=("*.txt" "*.png" "*.jpg")
+EXTENSIONS=("*.txt" "*.png" "*.jpg" "*.csv" "*.pub" "*.private" "*.pem")
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 source "$SCRIPT_DIR/crypto/crypto_common.sh"

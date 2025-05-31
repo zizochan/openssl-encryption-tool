@@ -26,10 +26,7 @@ fi
 # パスフレーズの入力（空チェック付き）
 read -rp "🔑 暗号化に使用するパスフレーズを入力してください: " PASSPHRASE
 echo
-if [[ -z "$PASSPHRASE" ]]; then
-	echo "❌ パスフレーズが空です。中止します。" >&2
-	exit 1
-fi
+check_passphrase_not_empty
 
 # zip化（相対パスにすることで余計な階層を作らない）
 echo "📦 ZIP作成中: $ZIP_FILE"
