@@ -17,7 +17,9 @@ OpenSSL（AES-256-CBC + PBKDF2）を使った、シンプルなファイル暗�
 brew install openssl shfmt
 ```
 
-### 2. `passphrase.txt` を作成する
+### 2. パスフレーズの設定
+
+#### 方法1：`passphrase.txt` を使用する（推奨）
 
 暗号化・復号に使用するパスフレーズを平文で `passphrase.txt` に記述してください。
 
@@ -27,6 +29,16 @@ cp passphrase.txt{.example,}
 echo "your-secret-passphrase" > passphrase.txt
 chmod 600 passphrase.txt
 ```
+
+#### 方法2：対話形式でパスフレーズを入力する
+
+環境変数 `INTERACTIVE_PASSPHRASE` を設定して実行すると、対話形式でパスフレーズを入力できます。
+
+```bash
+INTERACTIVE_PASSPHRASE=1 ./encrypt.sh ファイル名
+```
+
+この方法では `passphrase.txt` は使用せず、実行時にパスフレーズを入力します。
 
 ### 3. alias追加
 
@@ -43,8 +55,16 @@ alias decrypt='/path/to/openssl-encryption-tool/decrypt.sh'
 
 ### 🔒 暗号化
 
+#### 通常の使用方法（`passphrase.txt` を使用）
+
 ```bash
 ./encrypt.sh ファイル名
+```
+
+#### 対話形式でパスフレーズを入力
+
+```bash
+INTERACTIVE_PASSPHRASE=1 ./encrypt.sh ファイル名
 ```
 
 例：
@@ -52,12 +72,24 @@ alias decrypt='/path/to/openssl-encryption-tool/decrypt.sh'
 ```bash
 ./encrypt.sh secret.txt
 # → secret.txt.enc が作成されます
+
+# 対話形式でパスフレーズを入力する場合
+INTERACTIVE_PASSPHRASE=1 ./encrypt.sh secret.txt
+# → パスフレーズの入力を求められます
 ```
 
 ### 🔓 復号
 
+#### 通常の使用方法（`passphrase.txt` を使用）
+
 ```bash
 ./decrypt.sh ファイル名.enc
+```
+
+#### 対話形式でパスフレーズを入力
+
+```bash
+INTERACTIVE_PASSPHRASE=1 ./decrypt.sh ファイル名.enc
 ```
 
 例：
@@ -65,6 +97,10 @@ alias decrypt='/path/to/openssl-encryption-tool/decrypt.sh'
 ```bash
 ./decrypt.sh secret.txt.enc
 # → secret.txt に復号されます
+
+# 対話形式でパスフレーズを入力する場合
+INTERACTIVE_PASSPHRASE=1 ./decrypt.sh secret.txt.enc
+# → パスフレーズの入力を求められます
 ```
 
 ---
